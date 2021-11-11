@@ -1,0 +1,17 @@
+<div style="padding-top:10%;padding-bottom: 10%;"  class="rtl text-center container">
+  <div *ngIf="!registerMode" class="container">
+    <h2 style="font-family:'JF FLAT'">زواج يأتي لك بشريكك في الحياة</h2>
+    <h5 style="font-family:'JF FLAT'">تخيل حياتك مع توأم روحك. مع زواج، أنت الآن على بعد خطوة من تحقيق حلمك</h5>
+    <div class="text-center">
+      <button (click)="registerToggle()" style="font-family:'JF FLAT'" class="btn btn-primary btn-lg mt-2">إشترك معنا</button>
+       </div>
+  </div>
+
+  <div *ngIf="registerMode" class="container">
+    <div class="row justify-content-center">
+      <div class="col-4">
+        <app-register (cancelRegister)="cancelRegister($event)"></app-register>
+      </div>
+    </div>
+  </div>
+</div>
