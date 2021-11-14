@@ -34,6 +34,7 @@
 .member-tabset > .nav-tabs > li.active {
   border-bottom: 4px solid #E95420;
   position: relative;
+  
 }
 .card-header{
   border-bottom: 4px solid #E95420;
@@ -55,9 +56,24 @@
   vertical-align: middle;
  
   text-align: right;
-  border-radius: 3px 3px 0 0/23px 23px 0 0;
+  border-radius: 5px 5px 0px 0px/25px 25px 25px 5px;
   
 }
+
+.btn {
+  letter-spacing:0.5px;
+  font-weight:bolder;
+  font-family:'JF Flat';
+  font-size:1.2rem;
+  border-radius: 5px;
+}
+
+.Font-Kufi{
+  letter-spacing:0.5px;
+  font-weight:bolder;
+  font-family:'Droid-Arabic-Kufi';
+}
+
 
 
 
@@ -84,9 +100,10 @@
   font-size:1.1rem;
 }
 
- /* Alertify Styles */
 
- .alertify{
+/* Alertify Styles */
+
+.alertify{
   direction: rtl;
   
 }
@@ -130,3 +147,13 @@
 .alertify .ajs-footer .ajs-buttons.ajs-primary{
   text-align: left;
 }
+
+.navbar {
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 16px 16px 0 0/13px 17px 16px 16px;
+}
+.btn , .btn-sm{
+border-radius: 16px 16px 0 0/13px 17px 16px 16px !important; 
+}
+
