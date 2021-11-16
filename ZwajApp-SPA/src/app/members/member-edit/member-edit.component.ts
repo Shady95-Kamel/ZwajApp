@@ -16,6 +16,9 @@ export class MemberEditComponent implements OnInit {
   @ViewChild('editForm') editForm:NgForm
 
   user:User
+  created:string;
+  age:string;
+  options = {weekday : 'long' , year :'numeric' , month : 'long',day:'numeric'};
   photoUrl:string;
 
   @HostListener('window:beforeunload',['$event'])
@@ -33,6 +36,9 @@ export class MemberEditComponent implements OnInit {
       this.user=data['user'];
     })
     this.authService.currentPhotoUrl.subscribe(photoUrl=>this.photoUrl=photoUrl);
+    this.authService.currentPhotoUrl.subscribe(photoUrl=>this.photoUrl=photoUrl);
+    this.created = new Date(this.user.created).toLocaleString('ar-EG',this.options).replace('،','');
+    this.age = this.user.age.toLocaleString('ar-EG');
   }
   updateUser(){
     this.userService.updateUser(this.authService.decodedToken.nameid,this.user).subscribe(()=>{

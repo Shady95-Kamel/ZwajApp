@@ -11,23 +11,23 @@
     </div>
     <div class="col-sm-4 mt-3">
       <div class="card">
-        <img class="card-img-top img-thumbnail" src="{{photoUrl}}" alt="{{user.knownAs}}">
+        <img class="card-img-top img-thumbnail" src="{{photoUrl || 'assets/User.png'}}" alt="{{user.knownAs}}">
         <div class="card-body">
           <div>
             <strong>مكان الإقامة </strong>
-            <p>{{user.country}},{{user.city}}</p>
+            <p>{{user.country}}-{{user.city}}</p>
           </div>
           <div>
             <strong>العمر </strong>
-            <p>{{user.age}}</p>
+            <p>{{age}}</p>
           </div>
           <div>
             <strong>آخر ظهور </strong>
-            <p>{{user.lastActive}}</p>
+            <p>{{user.lastActive | timeAgo}}</p>
           </div>
           <div>
             <strong>مشترك منذ </strong>
-            <p>{{user.created}}</p>
+            <p>{{created}}</p>
           </div>
         </div>
         <div class="card-footer">
@@ -91,7 +91,7 @@
           </tab>
 
           <tab heading="صوري">
-           <app-photo-editor [photos]="user.photos"></app-photo-editor>
+           <app-photo-editor (getMemberPhotoChange)="updateMainPhoto($event)" [photos]="user.photos"></app-photo-editor>
             <!-- <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery> -->
           </tab>
 
@@ -101,3 +101,4 @@
     </div>
   </div>
 </div>
+

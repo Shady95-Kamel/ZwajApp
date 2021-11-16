@@ -2,23 +2,23 @@
   <div class="row">
     <div class="col-sm-4 mt-3">
       <div class="card">
-        <img class="card-img-top img-thumbnail" src="{{user.photoUrl}}" alt="{{user.knownAs}}">
+        <img class="card-img-top img-thumbnail" src="{{user.photoUrl|| 'assets/User.png'}}" alt="{{user.knownAs}}">
         <div class="card-body">
           <div>
             <strong>مكان الإقامة </strong>
-            <p>{{user.country}},{{user.city}}</p>
+            <p>{{user.country}}-{{user.city}}</p>
           </div>
           <div>
             <strong>العمر </strong>
-            <p>{{user.age}}</p>
+            <p>{{age}}</p>
           </div>
           <div>
             <strong>آخر ظهور </strong>
-            <p>{{user.lastActive}}</p>
+            <p>{{user.lastActive | timeAgo}}</p>
           </div>
           <div>
             <strong>مشترك منذ </strong>
-            <p>{{user.created}}</p>
+            <p>{{created}}</p>
           </div>
         </div>
         <div class="card-footer">
@@ -38,8 +38,10 @@
                     <h4>أعرفك بنفسي</h4>
                   </div>
                   <div class="card-text mt-3 p-2">
-                    <p>{{user.introduction}}</p>
+                    <p #intro>{{user.introduction | slice:0:200}}</p>
                   </div>
+                  <button [hidden]='!showIntro' class="btn btn-primary" (click)="intro.innerText = user.introduction;showIntro=false;">إقرأ المزيد</button>
+                  <button [hidden]='showIntro' class="btn btn-danger" (click)="intro.innerText = user.introduction.slice(0,200);showIntro=true;">تصغير</button>
             </div>
             
             <div class="card mt-4">
@@ -47,8 +49,10 @@
                     <h4>أبحث عن</h4>
                   </div>
                   <div class="card-text mt-3 p-2">
-                    <p>{{user.lookingFor}}</p>
+                    <p #look>{{user.lookingFor | slice:0:200}}</p>
                   </div>
+                  <button [hidden]='!showLook' class="btn btn-primary" (click)="look.innerText = user.lookingFor;showLook=false;">إقرأ المزيد</button>
+                  <button [hidden]='showLook' class="btn btn-danger" (click)="look.innerText = user.lookingFor.slice(0,200);showLook=true;">تصغير</button>
             </div>
 
             

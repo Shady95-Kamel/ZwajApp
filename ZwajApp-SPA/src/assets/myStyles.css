@@ -156,4 +156,7 @@
 .btn , .btn-sm{
 border-radius: 16px 16px 0 0/13px 17px 16px 16px !important; 
 }
+.bs-datepicker{
+  direction: rtl;
+}
 

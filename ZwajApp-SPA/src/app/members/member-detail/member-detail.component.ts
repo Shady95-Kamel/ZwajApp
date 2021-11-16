@@ -12,6 +12,12 @@ import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gal
 })
 export class MemberDetailComponent implements OnInit {
   user: User
+  created:string;
+  age:string;
+  showIntro:boolean=true;
+  showLook:boolean=true;
+  options = {weekday : 'long' , year :'numeric' , month : 'long',day:'numeric'};
+
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
   constructor(private userService: UserService, private alertify: AlertifyService,
@@ -28,6 +34,10 @@ export class MemberDetailComponent implements OnInit {
     }]
 
     this.galleryImages=this.getImages();
+    this.created = new Date(this.user.created).toLocaleString('ar-EG',this.options).replace('،','');
+    this.age = this.user.age.toLocaleString('ar-EG');
+    this.showIntro=true;
+    this.showLook=true;
 
   }
   getImages(){
