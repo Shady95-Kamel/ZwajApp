@@ -1,8 +1,50 @@
-<div class="rtl container">
-<div class="row">
-  <div *ngFor="let user of users" class="col-lg-2 col-md-3 col-sm-6">
-    <app-member-card [user]='user'></app-member-card>
+<div class="text-center">
+  <h4 style="font-family:'Droid-Arabic-Kufi'"> يوجد {{pagination.totalItems}} <span *ngIf="pagination.totalItems>10">إقتراح</span><span *ngIf="pagination.totalItems<=10">إقتراحات</span> </h4>
+</div>
+<div class="rtl container mt-3">
+  <form dir="rtl" form="ngForm" (ngSubmit)="search=false;loadUsers();" class="form-inline" novalidate>
+    <div class="form-group">
+      <label for="minAge">العمر الأدنى </label>
+      <input type="number" [(ngModel)]="userParams.minAge" class="form-control ml-1" style="width: 70px" id="minAge"
+        name="minAge">
+    </div>
+
+    <div class="form-group px-2">
+      <label for="maxAge">العمر الأقصى </label>
+      <input type="number" [(ngModel)]="userParams.maxAge" class="form-control ml-1" style="width: 70px" id="maxAge"
+        name="maxAge">
+    </div>
+
+    <div class="form-group px-2">
+      <label for="gender">عرض </label>
+      <select [(ngModel)]="userParams.gender" class="form-control ml-1" style="width: 130px" id="gender" name="gender">
+        <option *ngFor="let gender of genderList" [value]="gender.value">
+          {{gender.display}}
+        </option>
+      </select>
+    </div>
+    <button type="submit" style="font-family:'JF FLAT'" class="btn btn-dark btn-small ml-2 mr-2">بحث</button>
+    <button type="button" style="font-family:'JF FLAT'" (click)="search=false;resetFilter();" class="btn btn-dark btn-small ml-2 mr-2">إستعادة</button>
+    <div class="col" >
+      <div class="btn-group-vertical float-left">
+        <button type="button" [(ngModel)]="userParams.orderBy" btnRadio="lastActive" (click)="loadUsers();" name="orderBy" class="btn mb-1 ajs-button btn-up" [ngStyle]="{'background':userParams.orderBy==='lastActive'?'red' : ''}" >الأحدث ظهوراً</button>
+        
+        <button type="button" [(ngModel)]="userParams.orderBy" (click)="loadUsers();" btnRadio="created" name="orderBy" class="btn ajs-button btn-down" [ngStyle]="{'background':userParams.orderBy==='created'?'red' : ''}">الأحدث إشتراكاً</button>
+      </div>
+    </div>
+  </form>
+ <br>
+  <div class="row ">
+    <div *ngFor="let user of users" class="col-lg-2 col-md-3 col-sm-6">
+      <app-member-card [user]='user'></app-member-card>
+    </div>
   </div>
 </div>
 
+<div *ngIf="pagination.totalItems>0" class="d-flex justify-content-center">
+  <pagination [boundaryLinks]="true" [itemsPerPage]="pagination.itemsPerPage" [totalItems]="pagination.totalItems"
+    [(ngModel)]="pagination.currentPage" (pageChanged)="search=true;pageChanged($event);" previousText="&lsaquo;" nextText="&rsaquo;"
+    firstText="&laquo;" lastText="&raquo;">
+
+  </pagination>
 </div>
